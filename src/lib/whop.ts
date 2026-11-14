@@ -17,7 +17,7 @@ export function getWhopCheckoutUrl(planId?: string): string {
     return configuredUrl;
   }
   const resolvedPlan =
-    planId || process.env.NEXT_PUBLIC_WHOP_PRO_PLAN_ID || "plan_clipengine_pro";
+    planId || process.env.NEXT_PUBLIC_WHOP_PRO_PLAN_ID || "plan_LmXKoSAPTfiy0";
   return `https://whop.com/checkout/${resolvedPlan}`;
 }
 
