@@ -292,13 +292,13 @@ export default function ClipEngineApp({
               </div>
               <p className="text-xs text-zinc-400">
                 Content Rewards Arbitrage &amp; Viral Hook OS
-              </p>
+              </p
             </div>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
             {/* Demo Pro Toggle */}
-            {!initialSession.hasProAccess && (`
+            {!initialSession.hasProAccess && (
               <button
                 onClick={() => setDemoProUnlocked((v) => !v)}
                 className={`flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition ${
@@ -315,7 +315,7 @@ export default function ClipEngineApp({
                 )}
                 {demoProUnlocked ? "Pro Active" : "Preview Pro"}
               </button>
-            `.trim())}
+            )}
 
             {hasProAccess ? (
               <span className="flex items-center gap-1.5 rounded-lg border border-emerald-500/30 bg-emerald-500/15 px-3 py-1.5 text-xs font-semibold text-emerald-300">
@@ -668,12 +668,12 @@ export default function ClipEngineApp({
                   Mandatory Rules
                 </div>
                 <ul className="space-y-1.5 text-xs text-zinc-400">
-                  {selectedBounty.rules.map((rule, idx) => (`
+                  {selectedBounty.rules.map((rule, idx) => (
                     <li key={idx} className="flex items-start gap-2">
                       <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
                       <span>{rule}</span>
                     </li>
-                  `.trim()))}
+                  ))}
                 </ul>
               </div>
 
@@ -682,14 +682,14 @@ export default function ClipEngineApp({
                   Required Caption Tags
                 </div>
                 <div className="flex flex-wrap gap-1.5">
-                  {selectedBounty.requiredCaptionTags.map((tag) => (`
+                  {selectedBounty.requiredCaptionTags.map((tag) => (
                     <span
                       key={tag}
                       className="rounded-md border border-[#2a2a38] bg-[#161620] px-2 py-0.5 font-mono text-[11px] text-zinc-200"
                     >
                       {tag}
                     </span>
-                  `.trim()))}
+                  ))}
                 </div>
               </div>
 
@@ -924,7 +924,7 @@ export default function ClipEngineApp({
                 </span>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-2.5">
                 {selectedBounty.rules.map((rule, idx) => {
                   const isChecked = Boolean(
                     checkedRules[`${selectedBounty.id}-${idx}`]
@@ -935,46 +935,78 @@ export default function ClipEngineApp({
                       onClick={() => toggleRule(idx)}
                       className={`flex cursor-pointer items-start gap-3 rounded-lg border p-3 transition ${
                         isChecked
-                          ? "border-emerald-500/40 bg-emerald-500/10 text-white"
-                          : "border-[#222230] bg-[#0e0e16] text-zinc-300 hover:border-[#323246]"
+                          ? "border-emerald-500/40 bg-emerald-500/10"
+                          : "border-[#242432] bg-[#0c0c12] hover:border-zinc-600"
                       }`}
                     >
-                      <input
-                        type="checkbox"
-                        checked={isChecked}
-                        onChange={() => {}}
-                        className="mt-0.5 h-4 w-4 accent-emerald-500"
-                      />
-                      <span className="text-xs leading-relaxed">{rule}</span>
+                      <div
+                        className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded border ${
+                          isChecked
+                            ? "border-emerald-400 bg-emerald-500 text-black"
+                            : "border-zinc-600"
+                        }`}
+                      >
+                        {isChecked && <Check className="h-3 w-3 stroke-[3]" />}
+                      </div>
+                      <span className="text-xs leading-relaxed text-zinc-200">
+                        {rule}
+                      </span>
                     </label>
                   );
                 })}
               </div>
+
+              {completedRuleCount < selectedBounty.rules.length ? (
+                <div className="flex items-center gap-2 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-200">
+                  <AlertTriangle className="h-4 w-4 shrink-0 text-amber-400" />
+                  <span>
+                    Check every requirement above before submitting to Whop to
+                    avoid payout rejection.
+                  </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3 text-xs text-emerald-200">
+                  <ShieldCheck className="h-4 w-4 shrink-0 text-emerald-400" />
+                  <span>
+                    All campaign requirements verified. Ready for Whop Content
+                    Rewards submission!
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Anti-Shadowban FFmpeg Generator */}
             <div className="space-y-4 rounded-xl border border-[#1f1f2b] bg-[#111118] p-5">
-              <div>
-                <h2 className="text-base font-bold text-white">
-                  Anti-Shadowban Video Filter Generator
-                </h2>
-                <p className="text-xs text-zinc-400">
-                  Subtle frame micro-transforms prevent TikTok &amp; IG duplicate-content hash detection.
-                </p>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Sliders className="h-4 w-4 text-[#FA4616]" />
+                  <h2 className="text-base font-bold text-white">
+                    Anti-Shadowban Originality Preset
+                  </h2>
+                </div>
+                <span className="rounded-md bg-[#1c1c28] px-2 py-0.5 text-[11px] text-zinc-300">
+                  FFmpeg + CapCut
+                </span>
               </div>
+
+              <p className="text-xs text-zinc-400">
+                TikTok &amp; IG Reels throttle raw re-uploads via audio/visual
+                fingerprinting. Tune subtle transforms below to generate a clean
+                command:
+              </p>
 
               <div className="space-y-3 rounded-lg border border-[#232330] bg-[#0c0c12] p-4 text-xs">
                 <div>
                   <div className="mb-1 flex justify-between">
-                    <span className="text-zinc-300">Crop &amp; Scale Zoom</span>
+                    <span className="text-zinc-300">Micro-Zoom Scale</span>
                     <span className="font-mono text-[#FA4616]">
-                      +{Math.round((ffmpegZoom - 1) * 100)}%
+                      {ffmpegZoom.toFixed(2)}x
                     </span>
                   </div>
                   <input
                     type="range"
-                    min="1.0"
-                    max="1.1"
+                    min="1.01"
+                    max="1.12"
                     step="0.01"
                     value={ffmpegZoom}
                     onChange={(e) => setFfmpegZoom(Number(e.target.value))}
@@ -984,7 +1016,7 @@ export default function ClipEngineApp({
 
                 <div>
                   <div className="mb-1 flex justify-between">
-                    <span className="text-zinc-300">Audio Pitch Mod</span>
+                    <span className="text-zinc-300">Audio Pitch Shift</span>
                     <span className="font-mono text-[#FA4616]">
                       {ffmpegPitch.toFixed(2)}x
                     </span>
@@ -1160,7 +1192,7 @@ export default function ClipEngineApp({
                           }
                           className="text-zinc-500 hover:text-red-400"
                           title="Remove"
-                        >`
+                        >
                           <Trash2 className="h-3.5 w-3.5" />
                         </button>
                       </div>
